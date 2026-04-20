@@ -86,7 +86,9 @@ button:hover {
   .subtitle {
     font-size: 13px;
   }
-  input, select, textarea {
+  input,
+  select,
+  textarea {
     font-size: 1em;
     padding: 9px;
   }
