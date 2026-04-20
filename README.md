@@ -19,7 +19,7 @@ Crio sites e automações que ajudam pequenos negócios a organizar processos e 
 
 ## 📦 Como rodar localmente
 
-```bash
+bash
 # Clone o repositório
 git clone https://github.com/amarusdeveloper/amarusdeveloper.github.io.git
 
