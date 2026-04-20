@@ -65,3 +65,49 @@ button {
 button:hover {
   background: #16a34a;
 }
+
+/* Responsividade */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+    height: auto;
+    min-height: 100vh;
+    font-size: 16px;
+  }
+  .container {
+    padding: 18px 8px;
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  h1 {
+    font-size: 1.4em;
+  }
+  .subtitle {
+    font-size: 13px;
+  }
+  input, select, textarea {
+    font-size: 1em;
+    padding: 9px;
+  }
+  button {
+    padding: 11px;
+    font-size: 1em;
+  }
+  img[alt="Logo Amaru's Developer"] {
+    max-width: 90px;
+    margin-bottom: 8px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding: 8px 2px;
+  }
+  h1 {
+    font-size: 1.1em;
+  }
+  .subtitle {
+    font-size: 12px;
+  }
+}
