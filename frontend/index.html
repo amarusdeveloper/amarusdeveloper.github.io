@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Amaru's Developer | Orçamento</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <img src="img/1776638651147.png" alt="Logo Amaru's Developer" style="display:block;margin:0 auto 10px auto;max-width:120px;width:100%;height:auto;">
+    <h1>Amaru's Developer</h1>
+    <p class="subtitle">
+      Sites e automações para pequenos negócios
+    </p>
+    <form id="leadForm">
+      <label>Tipo de projeto</label>
+      <select name="tipo" required>
+        <option value="">Selecione</option>
+        <option>Site simples</option>
+        <option>Site + automação</option>
+      </select>
+      <label>Objetivo</label>
+      <select name="objetivo" required>
+        <option value="">Selecione</option>
+        <option>Atrair clientes</option>
+        <option>Organizar atendimento</option>
+        <option>Automatizar tarefas</option>
+      </select>
+      <label>Orçamento</label>
+      <select name="orcamento" required>
+        <option value="">Selecione</option>
+        <option>Até R$800</option>
+        <option>R$800–1500</option>
+        <option>R$1500+</option>
+      </select>
+      <label>Prazo</label>
+      <select name="prazo" required>
+        <option value="">Selecione</option>
+        <option>Urgente</option>
+        <option>Normal</option>
+        <option>Sem pressa</option>
+      </select>
+      <label>Descreva o que você precisa</label>
+      <textarea name="mensagem" placeholder="Explique seu projeto..." required></textarea>
+      <label>Seu e-mail</label>
+      <input type="email" name="email" placeholder="exemplo@email.com" required>
+      <button type="submit">Solicitar orçamento</button>
+      <div id="formMsg" style="margin-top:15px;text-align:center;"></div>
+    </form>
+  </div>
+  <script>
+    const form = document.getElementById('leadForm');
+    const msg = document.getElementById('formMsg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.textContent = '';
+      const data = {
+        tipo: form.tipo.value,
+        objetivo: form.objetivo.value,
+        orcamento: form.orcamento.value,
+        prazo: form.prazo.value,
+        mensagem: form.mensagem.value,
+        email: form.email.value
+      };
+      try {
+        const res = await fetch('http://localhost:5000/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        if (result.success) {
+          msg.style.color = '#22c55e';
+          msg.textContent = 'Orçamento enviado com sucesso!';
+          form.reset();
+        } else {
+          msg.style.color = '#f87171';
+          msg.textContent = result.error || 'Erro ao enviar.';
+        }
+      } catch (err) {
+        msg.style.color = '#f87171';
+        msg.textContent = 'Erro de conexão.';
+      }
+    });
+  </script>
+</body>
+</html>
